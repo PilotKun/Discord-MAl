@@ -1,0 +1,27 @@
+{
+  "name": "discord-mal",
+  "version": "1.0.0",
+  "description": "A bot to help users see their MAL list and profile on Discord.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hackers244/Discord-MAL.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Hackers244/Discord-MAL/issues"
+  },
+  "homepage": "https://github.com/Hackers244/Discord-MAL#readme",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "discord.js": "^14.17.3",
+    "dotenv": "^16.4.7",
+    "mongoose": "^8.9.5"
+  }
+}

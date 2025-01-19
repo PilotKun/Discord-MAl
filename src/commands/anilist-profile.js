@@ -17,6 +17,9 @@ module.exports = {
         try {
             const userData = await fetchAniListUser(username);
 
+            // Convert minutes watched to days watched
+            const daysWatched = (userData.statistics.anime.minutesWatched / 1440).toFixed(1);
+
             const embed = {
                 color: 0x2e51a2,
                 title: `${userData.name}'s AniList Profile`,
@@ -27,7 +30,7 @@ module.exports = {
                 fields: [
                     {
                         name: 'Anime Stats',
-                        value: `**Total Anime**: ${userData.statistics.anime.count}\n**Mean Score**: ${userData.statistics.anime.meanScore}\n**Minutes Watched**: ${userData.statistics.anime.minutesWatched}`,
+                        value: `**Total Anime**: ${userData.statistics.anime.count}\n**Mean Score**: ${userData.statistics.anime.meanScore}\n**Days Watched**: ${daysWatched}`,
                         inline: true,
                     },
                     {

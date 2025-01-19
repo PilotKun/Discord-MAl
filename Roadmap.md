@@ -7,7 +7,7 @@ This Discord bot will use `discord.js` and the AniList API to provide anime-rela
 
 ## Step-by-Step Development Plan
 
-### Step 1: Project Initialization (Week 1)
+### Step 1: Project Initialization (Week 1) ✅
 1. Install Node.js and initialize the project using `npm init`.
 2. Set up a Git repository for version control.
 3. Install required dependencies:
@@ -24,7 +24,7 @@ This Discord bot will use `discord.js` and the AniList API to provide anime-rela
 5. Register the bot with Discord and get the bot token.
 6. Test a simple bot connection to Discord.
 
-### Step 2: User Profile Retrieval (Week 2)
+### Step 2: User Profile Retrieval (Week 2) ✅
 1. Set up the AniList API:
    - Obtain an API key from AniList.
    - Test API requests using Postman or a similar tool.

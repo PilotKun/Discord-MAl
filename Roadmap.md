@@ -1,7 +1,7 @@
 # Step-by-Step Roadmap for Discord Bot
 
 ## Overview
-This Discord bot will use `discord.js` and the MyAnimeList (MAL) API to provide anime-related functionalities to users. The primary features include retrieving user profile data from MAL, searching for anime in the MAL database, and managing a personalized watchlist. Notifications for new episodes of watchlisted anime will also be included as a low-priority feature.
+This Discord bot will use `discord.js` and the AniList API to provide anime-related functionalities to users. The primary features include retrieving user profile data from AniList, searching for anime in the AniList database, and managing a personalized watchlist. Notifications for new episodes of watchlisted anime will also be included as a low-priority feature.
 
 ---
 
@@ -25,10 +25,10 @@ This Discord bot will use `discord.js` and the MyAnimeList (MAL) API to provide 
 6. Test a simple bot connection to Discord.
 
 ### Step 2: User Profile Retrieval (Week 2)
-1. Set up the MyAnimeList API:
-   - Obtain an API key from MAL.
+1. Set up the AniList API:
+   - Obtain an API key from AniList.
    - Test API requests using Postman or a similar tool.
-2. Create a command to fetch and display MAL user profile data:
+2. Create a command to fetch and display AniList user profile data:
    - Use the `/profile` command.
    - Parse and format profile details like username, stats, and favorites.
 3. Implement error handling for API request failures or invalid usernames.
@@ -36,7 +36,7 @@ This Discord bot will use `discord.js` and the MyAnimeList (MAL) API to provide 
 ### Step 3: Anime Search (Week 3)
 1. Design a `/search` command:
    - Accept search keywords or filters as arguments.
-   - Query the MAL API for anime matching the criteria.
+   - Query the AniList API for anime matching the criteria.
 2. Format search results for clarity:
    - Display title, synopsis, and rating.
    - Limit the number of results for readability.
@@ -54,7 +54,7 @@ This Discord bot will use `discord.js` and the MyAnimeList (MAL) API to provide 
 
 ### Step 5: Notification System (Week 6-7)
 1. Implement a scheduler using `node-cron`:
-   - Periodically check the MAL API for new episodes of watchlisted anime.
+   - Periodically check the AniList API for new episodes of watchlisted anime.
    - Compare the latest episode count with the stored data.
 2. Build a notification delivery system:
    - Send alerts to users via Discord DMs or a designated channel.
@@ -82,7 +82,7 @@ This Discord bot will use `discord.js` and the MyAnimeList (MAL) API to provide 
 
 ## Future Enhancements
 - Add support for managing manga watchlists.
-- Integrate with other anime databases (e.g., AniList).
+- Integrate with other anime databases (e.g., MyAnimeList).
 - Enable multilingual support.
 - Introduce premium features for advanced users.
 
@@ -90,6 +90,6 @@ This Discord bot will use `discord.js` and the MyAnimeList (MAL) API to provide 
 
 ## References
 - [discord.js Documentation](https://discord.js.org/#/)
-- [MyAnimeList API Documentation](https://myanimelist.net/apiconfig/references/api/v2)
+- [AniList API Documentation](https://anilist.gitbook.io/anilist-apiv2-docs/)
 - [MongoDB Documentation](https://www.mongodb.com/docs/)
 - [node-cron Documentation](https://www.npmjs.com/package/node-cron)

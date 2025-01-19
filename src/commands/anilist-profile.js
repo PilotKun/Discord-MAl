@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { fetchAniListUser } = require('../utils');
+const { fetchAniListUser } = require('../utils/querry-anilist');
 
 module.exports = {
     data: new SlashCommandBuilder()

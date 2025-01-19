@@ -23,6 +23,11 @@ client.on('interactionCreate', async (interaction) => {
         const apiLatency = Math.round(client.ws.ping);
         await interaction.editReply(`Pong! Latency is ${latency}ms. API Latency is ${apiLatency}ms.`);
     }
+
+    if (interaction.commandName === 'anilist-user') {
+        const command = require('./commands/anilist-profile');
+        await command.execute(interaction);
+    }
 });
 
 client.login(process.env.DISCORD_TOKEN);

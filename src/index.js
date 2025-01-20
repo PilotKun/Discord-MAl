@@ -28,6 +28,11 @@ client.on('interactionCreate', async (interaction) => {
         const command = require('./commands/anilist-profile');
         await command.execute(interaction);
     }
+
+    if (interaction.commandName === 'search') {
+        const command = require('./commands/search-anime');
+        await command.execute(interaction);
+    }
 });
 
 client.login(process.env.DISCORD_TOKEN);

@@ -3,7 +3,6 @@ const path = require('path');
 require('dotenv').config();
 const { REST, Routes } = require('discord.js');
 
-// Predefined commands (like 'ping')
 const commands = [
   {
     name: 'ping',
@@ -11,7 +10,6 @@ const commands = [
   },
 ];
 
-// Dynamically load commands from the commands folder
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 

@@ -81,10 +81,10 @@ module.exports = {
                 const genres = selectedAnime.genres ? selectedAnime.genres.join(', ') : 'No genres available';
         
                 const embed = new EmbedBuilder()
-                    .setTitle(selectedAnime.title.romaji || selectedAnime.title.english)
-                    .setURL(`https://anilist.co/anime/${selectedAnime.id}`)
-                    .setDescription(`**Score**: ${selectedAnime.averageScore}\n**Genres**: ${genres}\n**Description**: ${cleanDescription.slice(0, 200)}...`)
-                    .setImage(selectedAnime.coverImage.large);
+                .setTitle(selectedAnime.title.romaji || selectedAnime.title.english)
+                .setURL(`https://anilist.co/anime/${selectedAnime.id}`)
+                .setDescription(`**Score**: ${selectedAnime.averageScore}\n**Genres**: ${genres}\n**Description**: ${cleanDescription}`)
+                .setImage(selectedAnime.coverImage.large);
         
                 await i.update({ content: '', embeds: [embed], components: [] });
             });

@@ -1,5 +1,6 @@
 require('dotenv').config();
 const { Client, GatewayIntentBits } = require('discord.js');
+const mongoose = require('mongoose');
 
 const client = new Client({
     intents: [
@@ -8,6 +9,15 @@ const client = new Client({
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
     ],
+});
+
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(() => {
+    console.log('Connected to MongoDB');
+}).catch(err => {
+    console.error('Failed to connect to MongoDB', err);
 });
 
 client.on('ready', () => {
@@ -31,6 +41,21 @@ client.on('interactionCreate', async (interaction) => {
 
     if (interaction.commandName === 'search') {
         const command = require('./commands/search-anime');
+        await command.execute(interaction);
+    }
+
+    if (interaction.commandName === 'add') {
+        const command = require('./commands/add-anime');
+        await command.execute(interaction);
+    }
+
+    if (interaction.commandName === 'remove') {
+        const command = require('./commands/remove-anime');
+        await command.execute(interaction);
+    }
+
+    if (interaction.commandName === 'watchlist') {
+        const command = require('./commands/watchlist');
         await command.execute(interaction);
     }
 });

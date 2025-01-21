@@ -61,7 +61,25 @@ This Discord bot will use `discord.js` and the AniList API to provide anime-rela
    - Allow users to customize notification settings.
 3. Optimize the system to avoid excessive API calls.
 
-### Step 6: Testing and Optimization (Week 8)
+### Step 6: AniList Account Linking (Week 7-8)
+1. Set up OAuth2 authentication with AniList:
+   - Register the application on AniList to obtain client credentials.
+   - Implement the OAuth2 flow to allow users to link their AniList accounts.
+2. Create a `/link` command:
+   - Direct users to the AniList authorization page.
+   - Handle the callback to store the user's AniList access token securely.
+3. Implement a `/unlink` command:
+   - Allow users to unlink their AniList accounts.
+   - Remove the stored access token from the database.
+4. Update the notification system:
+   - Use the linked AniList account to fetch personalized data.
+   - Ensure notifications are sent based on the user's AniList watchlist.
+5. Test the linking process:
+   - Verify the OAuth2 flow works correctly.
+   - Ensure data is securely stored and accessed.
+   - Check for edge cases, such as expired tokens.
+
+### Step 7: Testing and Optimization (Week 8-9)
 1. Test each command and feature extensively:
    - Verify proper functioning under various scenarios.
    - Check for API rate limits and handle errors gracefully.
@@ -72,7 +90,7 @@ This Discord bot will use `discord.js` and the AniList API to provide anime-rela
    - Test the bot on a staging server.
    - Set up hosting on platforms like Heroku, AWS, or Railway.
 
-### Step 7: Deployment and Maintenance
+### Step 8: Deployment and Maintenance
 1. Deploy the bot to a hosting platform.
 2. Monitor logs for errors and performance issues.
 3. Collect user feedback for future improvements.

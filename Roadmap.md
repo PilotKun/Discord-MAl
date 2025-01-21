@@ -33,7 +33,7 @@ This Discord bot will use `discord.js` and the AniList API to provide anime-rela
    - Parse and format profile details like username, stats, and favorites.
 3. Implement error handling for API request failures or invalid usernames.
 
-### Step 3: Anime Search (Week 3)
+### Step 3: Anime Search (Week 3) ✅
 1. Design a `/search` command:
    - Accept search keywords or filters as arguments.
    - Query the AniList API for anime matching the criteria.

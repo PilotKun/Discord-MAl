@@ -1,5 +1,5 @@
 # Discord-MAL
-A bot to help users see their MAL list and profile on Discord. 
+One bot to help users see their MAL & Anilist profile, list, etc on Discord. 
 
 ## List of features that are already done and the ones coming soon 
 **User Stats:** The bot provides users with their AniList profile stats, making it easy to track their anime journey.✅
@@ -10,4 +10,6 @@ A bot to help users see their MAL list and profile on Discord.
 
 **Episode Notifications:** Get notified when new episodes of anime in your watchlist are released, ensuring you never miss an episode.
 
-**Account Linking:** Link your discord account with your Anilist account.
+**Account Linking:** Link your Discord account with your Anilist account.
+
+**MAL ARC:** Do all the features available for Anilist for MyAnimeList.

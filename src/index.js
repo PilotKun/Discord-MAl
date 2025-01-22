@@ -58,6 +58,16 @@ client.on('interactionCreate', async (interaction) => {
         const command = require('./commands/watchlist');
         await command.execute(interaction);
     }
+
+    if (interaction.commandName === 'addprofile') {
+        const command = require('./commands/addProfile');
+        await command.execute(interaction);
+    }
+
+    if (interaction.commandName === 'profile') {
+        const command = require('./commands/profile');
+        await command.execute(interaction);
+    }
 });
 
 client.login(process.env.DISCORD_TOKEN);

@@ -32,11 +32,13 @@ module.exports = {
                                 count
                                 meanScore
                                 minutesWatched
+                                episodesWatched
                             }
                             manga {
                                 count
                                 chaptersRead
                                 volumesRead
+                                meanScore
                             }
                         }
                     }
@@ -79,12 +81,16 @@ module.exports = {
                     url: profile.avatar.large,
                 },
                 fields: [
-                    { name: 'Anime Count', value: profile.statistics.anime.count.toString(), inline: true },
-                    { name: 'Mean Score', value: profile.statistics.anime.meanScore.toString(), inline: true },
-                    { name: 'Days Watched', value: daysWatched.toString(), inline: true },
-                    { name: 'Total Manga', value: profile.statistics.manga.count.toString(), inline: true },
-                    { name: 'Chapters Read', value: profile.statistics.manga.chaptersRead.toString(), inline: true },
-                    { name: 'Volumes Read', value: profile.statistics.manga.volumesRead.toString(), inline: true },
+                    {
+                        name: 'Anime Stats',
+                        value: `**Total Anime**: ${profile.statistics.anime.count}\n**Mean Score**: ${profile.statistics.anime.meanScore}\n**Episodes Watched**: ${profile.statistics.anime.episodesWatched}\n**Days Watched**: ${daysWatched}`,
+                        inline: true,
+                    },
+                    {
+                        name: 'Manga Stats',
+                        value: `**Total Manga**: ${profile.statistics.manga.count}\n**Mean Score**: ${profile.statistics.manga.meanScore}\n**Chapters Read**: ${profile.statistics.manga.chaptersRead}\n**Volumes Read**: ${profile.statistics.manga.volumesRead}`,
+                        inline: true,
+                    }
                 ],
             };
 

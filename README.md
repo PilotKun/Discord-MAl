@@ -10,6 +10,6 @@ One bot to help users see their MAL & Anilist profile, list, etc on Discord.
 
 **Episode Notifications:** Get notified when new episodes of anime in your watchlist are released, ensuring you never miss an episode.
 
-**Account Linking:** Link your Discord account with your Anilist account.
+**Account Linking:** Link your Discord account with your Anilist account. ✅
 
 **MAL ARC:** Do all the features available for Anilist for MyAnimeList.

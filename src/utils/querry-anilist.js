@@ -23,6 +23,20 @@ async function fetchAniListUser(username) {
                 volumesRead
               }
             }
+            favourites {
+              anime {
+                nodes {
+                  id
+                  title {
+                    romaji
+                    english
+                  }
+                  mediaListEntry {
+                    score
+                  }
+                }
+              }
+            }
           }
         }
     `;

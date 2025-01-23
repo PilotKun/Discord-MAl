@@ -83,7 +83,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                 .setTitle(selectedAnime.title.romaji || selectedAnime.title.english)
                 .setURL(`https://anilist.co/anime/${selectedAnime.id}`)
-                .setDescription(`**Score**: ${selectedAnime.averageScore}\n**Genres**: ${genres}\n**Description**: ${cleanDescription}`)
+                .setDescription(`**Score**: **${selectedAnime.averageScore}**\n**Genres**: ${genres}\n**Description**: ${cleanDescription}`)
                 .setImage(selectedAnime.coverImage.large);
         
                 await i.update({ content: '', embeds: [embed], components: [] });

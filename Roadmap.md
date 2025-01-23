@@ -42,7 +42,7 @@ This Discord bot will use `discord.js` and the AniList API to provide anime-rela
    - Limit the number of results for readability.
 3. Handle edge cases (e.g., no results found).
 
-### Step 4: Watchlist Management (Week 4-5)
+### Step 4: Watchlist Management (Week 4-5) ✅
 1. Set up a MongoDB database:
    - Create a `User` schema to store watchlists.
    - Connect the database to the project using `mongoose`.
@@ -61,7 +61,7 @@ This Discord bot will use `discord.js` and the AniList API to provide anime-rela
    - Allow users to customize notification settings.
 3. Optimize the system to avoid excessive API calls.
 
-### Step 6: AniList Account Linking (Week 7-8)
+### Step 6: AniList Account Linking (Week 7-8) ✅
 1. Set up OAuth2 authentication with AniList:
    - Register the application on AniList to obtain client credentials.
    - Implement the OAuth2 flow to allow users to link their AniList accounts.
@@ -79,7 +79,20 @@ This Discord bot will use `discord.js` and the AniList API to provide anime-rela
    - Ensure data is securely stored and accessed.
    - Check for edge cases, such as expired tokens.
 
-### Step 7: Testing and Optimization (Week 8-9)
+### Step 7: Add Favorite Anime Button (Week 8-9)
+1. Update the `/profile` command:
+   - Add a "Favorite Anime" button under the user's profile.
+   - Fetch the user's favorite anime from their AniList profile.
+2. Display favorite anime:
+   - Show a list of the user's favorite anime with details like title, cover image, and description.
+3. Handle button interactions:
+   - Ensure the button correctly fetches and displays the favorite anime.
+   - Handle edge cases, such as no favorite anime found.
+4. Test the new feature:
+   - Verify the button works correctly under various scenarios.
+   - Ensure the favorite anime data is displayed accurately.
+
+### Step 8: Testing and Optimization (Week 9-10)
 1. Test each command and feature extensively:
    - Verify proper functioning under various scenarios.
    - Check for API rate limits and handle errors gracefully.
@@ -90,7 +103,7 @@ This Discord bot will use `discord.js` and the AniList API to provide anime-rela
    - Test the bot on a staging server.
    - Set up hosting on platforms like Heroku, AWS, or Railway.
 
-### Step 8: Deployment and Maintenance
+### Step 9: Deployment and Maintenance
 1. Deploy the bot to a hosting platform.
 2. Monitor logs for errors and performance issues.
 3. Collect user feedback for future improvements.

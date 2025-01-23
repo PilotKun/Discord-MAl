@@ -31,9 +31,7 @@ async function fetchAniListUser(username) {
                     romaji
                     english
                   }
-                  mediaListEntry {
-                    score
-                  }
+                  averageScore
                 }
               }
             }

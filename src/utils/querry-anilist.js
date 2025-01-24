@@ -1,41 +1,44 @@
 const axios = require('axios');
-
 const anilistAPI = 'https://graphql.anilist.co';
 
 async function fetchAniListUser(username) {
     const query = `
         query ($username: String) {
-          User(name: $username) {
-            id
-            name
-            avatar {
-              large
-            }
-            statistics {
-              anime {
-                count
-                meanScore
-                minutesWatched
-              }
-              manga {
-                count
-                chaptersRead
-                volumesRead
-              }
-            }
-            favourites {
-              anime {
-                nodes {
-                  id
-                  title {
-                    romaji
-                    english
-                  }
-                  averageScore
+            User(name: $username) {
+                id
+                name
+                about
+                avatar {
+                    large
                 }
-              }
+                statistics {
+                    anime {
+                        count
+                        meanScore
+                        minutesWatched
+                    }
+                    manga {
+                        count
+                        chaptersRead
+                        volumesRead
+                    }
+                }
+                favourites {
+                    anime {
+                        nodes {
+                            id
+                            title {
+                                romaji
+                                english
+                            }
+                            averageScore
+                            coverImage {
+                                large
+                            }
+                        }
+                    }
+                }
             }
-          }
         }
     `;
 

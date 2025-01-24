@@ -113,6 +113,9 @@ module.exports = {
                                             mediaListEntry {
                                                 score
                                             }
+                                            coverImage {
+                                                large
+                                            }
                                         }
                                     }
                                 }
@@ -131,57 +134,57 @@ module.exports = {
                             variables: { username: anilistUsername }
                         })
                     });
-
+                    
                     if (!favoriteResponse.ok) {
                         throw new Error(`AniList API returned status code ${favoriteResponse.status}`);
                     }
-
+                    
                     const favoriteData = await favoriteResponse.json();
-
                     if (favoriteData.errors) {
                         throw new Error(`AniList API errors: ${JSON.stringify(favoriteData.errors)}`);
                     }
-
+                    
                     const favoriteAnime = favoriteData.data.User.favourites.anime.nodes;
-
+                    
                     if (favoriteAnime.length === 0) {
                         return await i.editReply({ content: 'No favorite anime found.', components: [] });
                     }
-
+                    
                     // Create an embed with the list of favorite anime titles
                     const favoriteEmbed = new EmbedBuilder()
-                        .setTitle(`${userProfile.name}'s Favorite Anime`)
-                        .setDescription(favoriteAnime.map(anime => `**${anime.title.romaji || anime.title.english}**`).join('\n'));
-
+                        .setTitle(`${user.username}'s Favorite Anime`)
+                        .setDescription(favoriteAnime.map((anime, index) => `${(index + 1).toString().padStart(2, ' ')}. [**${anime.title.romaji || anime.title.english}**](https://anilist.co/anime/${anime.id})`).join('\n'));
+                    
                     // Create buttons for each favorite anime
-                    const buttons = favoriteAnime.map(anime => 
+                    const buttons = favoriteAnime.map((anime, index) => 
                         new ButtonBuilder()
                             .setCustomId(`anime_${anime.id}`)
-                            .setLabel(anime.title.romaji || anime.title.english)
+                            .setLabel(`${index + 1}`)
                             .setStyle(ButtonStyle.Secondary)
                     );
-
+                    
                     // Split buttons into rows of 5
                     const buttonRows = [];
                     for (let i = 0; i < buttons.length; i += 5) {
                         buttonRows.push(new ActionRowBuilder().addComponents(buttons.slice(i, i + 5)));
                     }
-
+                    
                     await i.editReply({ embeds: [favoriteEmbed], components: buttonRows });
-
+                    
                     // Handle button interactions for each anime
                     const animeFilter = i => i.customId.startsWith('anime_') && i.user.id === interaction.user.id;
-                    const animeCollector = interaction.channel.createMessageComponentCollector({ animeFilter, time: 60000 });
-
+                    const animeCollector = interaction.channel.createMessageComponentCollector({ filter: animeFilter, time: 60000 });
+                    
                     animeCollector.on('collect', async i => {
                         const animeId = i.customId.split('_')[1];
                         const selectedAnime = favoriteAnime.find(anime => anime.id == animeId);
-
+                    
                         const animeEmbed = new EmbedBuilder()
                             .setTitle(selectedAnime.title.romaji || selectedAnime.title.english)
                             .setURL(`https://anilist.co/anime/${selectedAnime.id}`)
-                            .setDescription(`**Score**: ${selectedAnime.mediaListEntry ? selectedAnime.mediaListEntry.score : 'N/A'}`);
-
+                            .setDescription(`**Score**: ${selectedAnime.mediaListEntry ? selectedAnime.mediaListEntry.score : 'N/A'}`)
+                            .setImage(selectedAnime.coverImage.large);
+                    
                         await i.update({ embeds: [animeEmbed], components: [] });
                     });
 

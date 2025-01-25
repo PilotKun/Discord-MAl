@@ -79,31 +79,35 @@ module.exports = {
                     { name: 'Manga Stats', value: `Count: ${userProfile.statistics.manga.count}\nMean Score : ${userProfile.statistics.manga.meanScore}\nChapters Read: ${userProfile.statistics.manga.chaptersRead}\nVolumes Read: ${userProfile.statistics.manga.volumesRead}`, inline: true }
                 );
 
-            // Create the favorite anime button
+            // Create the favorite anime and manga buttons
             const row = new ActionRowBuilder()
                 .addComponents(
                     new ButtonBuilder()
                         .setCustomId('favorite_anime')
                         .setLabel('Favorite Anime')
+                        .setStyle(ButtonStyle.Primary),
+                    new ButtonBuilder()
+                        .setCustomId('favorite_manga')
+                        .setLabel('Favorite Manga')
                         .setStyle(ButtonStyle.Primary)
                 );
 
             await interaction.reply({ embeds: [profileEmbed], components: [row] });
 
             // Handle button interaction
-            const filter = i => i.customId === 'favorite_anime' && i.user.id === interaction.user.id;
+            const filter = i => (i.customId === 'favorite_anime' || i.customId === 'favorite_manga') && i.user.id === interaction.user.id;
             const collector = interaction.channel.createMessageComponentCollector({ filter, time: 60000 });
 
             collector.on('collect', async i => {
                 try {
                     await i.deferUpdate(); // Defer the interaction to give more time for processing
 
-                    // Fetch favorite anime data
+                    const isAnime = i.customId === 'favorite_anime';
                     const favoriteQuery = `
                         query ($username: String) {
                             User(name: $username) {
                                 favourites {
-                                    anime {
+                                    ${isAnime ? 'anime' : 'manga'} {
                                         nodes {
                                             id
                                             title {
@@ -134,63 +138,59 @@ module.exports = {
                             variables: { username: anilistUsername }
                         })
                     });
-                    
+
                     if (!favoriteResponse.ok) {
                         throw new Error(`AniList API returned status code ${favoriteResponse.status}`);
                     }
-                    
+
                     const favoriteData = await favoriteResponse.json();
                     if (favoriteData.errors) {
                         throw new Error(`AniList API errors: ${JSON.stringify(favoriteData.errors)}`);
                     }
-                    
-                    const favoriteAnime = favoriteData.data.User.favourites.anime.nodes;
-                    
-                    if (favoriteAnime.length === 0) {
-                        return await i.editReply({ content: 'No favorite anime found.', components: [] });
+
+                    const favoriteItems = favoriteData.data.User.favourites[isAnime ? 'anime' : 'manga'].nodes;
+
+                    if (favoriteItems.length === 0) {
+                        return await i.editReply({ content: `No favorite ${isAnime ? 'anime' : 'manga'} found.`, components: [] });
                     }
-                    
-                    // Create an embed with the list of favorite anime titles
+
                     const favoriteEmbed = new EmbedBuilder()
-                        .setTitle(`${user.username}'s Favorite Anime`)
-                        .setDescription(favoriteAnime.map((anime, index) => `${(index + 1).toString().padStart(2, ' ')}. [**${anime.title.romaji || anime.title.english}**](https://anilist.co/anime/${anime.id})`).join('\n'));
-                    
-                    // Create buttons for each favorite anime
-                    const buttons = favoriteAnime.map((anime, index) => 
+                        .setTitle(`${user.username}'s Favorite ${isAnime ? 'Anime' : 'Manga'}`)
+                        .setDescription(favoriteItems.map((item, index) => `${(index + 1).toString().padStart(2, ' ')}. [**${item.title.romaji || item.title.english}**](https://anilist.co/${isAnime ? 'anime' : 'manga'}/${item.id})`).join('\n'));
+
+                    const buttons = favoriteItems.map((item, index) =>
                         new ButtonBuilder()
-                            .setCustomId(`anime_${anime.id}`)
+                            .setCustomId(`${isAnime ? 'anime' : 'manga'}_${item.id}`)
                             .setLabel(`${index + 1}`)
                             .setStyle(ButtonStyle.Secondary)
                     );
-                    
-                    // Split buttons into rows of 5
+
                     const buttonRows = [];
                     for (let i = 0; i < buttons.length; i += 5) {
                         buttonRows.push(new ActionRowBuilder().addComponents(buttons.slice(i, i + 5)));
                     }
-                    
+
                     await i.editReply({ embeds: [favoriteEmbed], components: buttonRows });
-                    
-                    // Handle button interactions for each anime
-                    const animeFilter = i => i.customId.startsWith('anime_') && i.user.id === interaction.user.id;
-                    const animeCollector = interaction.channel.createMessageComponentCollector({ filter: animeFilter, time: 60000 });
-                    
-                    animeCollector.on('collect', async i => {
-                        const animeId = i.customId.split('_')[1];
-                        const selectedAnime = favoriteAnime.find(anime => anime.id == animeId);
-                    
-                        const animeEmbed = new EmbedBuilder()
-                            .setTitle(selectedAnime.title.romaji || selectedAnime.title.english)
-                            .setURL(`https://anilist.co/anime/${selectedAnime.id}`)
-                            .setDescription(`**Score**: ${selectedAnime.mediaListEntry ? selectedAnime.mediaListEntry.score : 'N/A'}`) //  TODO add the user score.
-                            .setImage(selectedAnime.coverImage.large);
-                    
-                        await i.update({ embeds: [animeEmbed], components: [] });
+
+                    const itemFilter = i => i.customId.startsWith(isAnime ? 'anime_' : 'manga_') && i.user.id === interaction.user.id;
+                    const itemCollector = interaction.channel.createMessageComponentCollector({ filter: itemFilter, time: 60000 });
+
+                    itemCollector.on('collect', async i => {
+                        const itemId = i.customId.split('_')[1];
+                        const selectedItem = favoriteItems.find(item => item.id == itemId);
+
+                        const itemEmbed = new EmbedBuilder()
+                            .setTitle(selectedItem.title.romaji || selectedItem.title.english)
+                            .setURL(`https://anilist.co/${isAnime ? 'anime' : 'manga'}/${selectedItem.id}`)
+                            .setDescription(`**Score**: ${selectedItem.mediaListEntry ? selectedItem.mediaListEntry.score : 'N/A'}`)
+                            .setImage(selectedItem.coverImage.large);
+
+                        await i.update({ embeds: [itemEmbed], components: [] });
                     });
 
                 } catch (error) {
                     console.error(error);
-                    await i.editReply({ content: `There was an error fetching your favorite anime: ${error.message}`, components: [] });
+                    await i.editReply({ content: `There was an error fetching your favorite ${isAnime ? 'anime' : 'manga'}: ${error.message}`, components: [] });
                 }
             });
 

@@ -39,8 +39,13 @@ client.on('interactionCreate', async (interaction) => {
         await command.execute(interaction);
     }
 
-    if (interaction.commandName === 'search') {
+    if (interaction.commandName === 'search-anime') {
         const command = require('./commands/search-anime');
+        await command.execute(interaction);
+    }
+
+    if (interaction.commandName === 'search-manga') {
+        const command = require('./commands/search-manga');
         await command.execute(interaction);
     }
 

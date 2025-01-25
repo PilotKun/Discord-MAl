@@ -114,8 +114,6 @@ This Discord bot will use `discord.js` and the AniList API to provide anime-rela
 ## Future Enhancements
 - Add support for managing manga watchlists.
 - Integrate with other anime databases (e.g., MyAnimeList).
-- Enable multilingual support.
-- Introduce premium features for advanced users.
 
 ---
 

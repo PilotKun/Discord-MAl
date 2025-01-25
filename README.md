@@ -23,7 +23,7 @@ The idea for this bot was given by my friend [@baku](https://github.com/maioriki
 ## Future Enhancements
 - Function to edit your Anilist anime list from Discord. 
 
-- Add support for manga managing & manga watchlists.
+- Add support for manga search, managing manga list etc.
 
 - Integrate with other anime databases (e.g., MyAnimeList).
 

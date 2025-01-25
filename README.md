@@ -6,7 +6,7 @@ The idea for this bot was given by my friend [@baku](https://github.com/maioriki
 ## List of features that are already done and the ones coming soon 
 **AniList User Command:** Fetches and displays the AniList user profile based on the provided username. ✅
 
-**Anime Search:** Users can search for anime titles and receive detailed information, including descriptions, images, genres, and more. ✅
+**Anime/Manga Search:** Users can search for anime/manga titles and receive detailed information, including descriptions, images, genres, and more. ✅
 
 **Watching List:** Users can add or remove anime from their watchlist. ✅
 
@@ -21,9 +21,7 @@ The idea for this bot was given by my friend [@baku](https://github.com/maioriki
 **Register Commands:** Registers all the application (/) commands to the Discord server. ✅
 
 ## Future Enhancements
-- Function to edit your Anilist anime list from Discord. 
-
-- Add support for manga search, managing manga list etc.
+- Function to edit your Anilist anime/manga list from Discord. 
 
 - Integrate with other anime databases (e.g., MyAnimeList).
 

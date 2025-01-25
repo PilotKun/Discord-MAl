@@ -79,7 +79,7 @@ This Discord bot will use `discord.js` and the AniList API to provide anime-rela
    - Ensure data is securely stored and accessed.
    - Check for edge cases, such as expired tokens.
 
-### Step 7: Add Favorite Anime Button (Week 8-9)
+### Step 7: Add Favorite Anime Button (Week 8-9) ✅
 1. Update the `/profile` command:
    - Add a "Favorite Anime" button under the user's profile.
    - Fetch the user's favorite anime from their AniList profile.

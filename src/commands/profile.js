@@ -75,8 +75,8 @@ module.exports = {
                 .setDescription(userProfile.about || 'No bio available.')
                 .setThumbnail(userProfile.avatar.large)
                 .addFields(
-                    { name: 'Anime Stats', value: `Count: ${userProfile.statistics.anime.count}\nMean Score: ${userProfile.statistics.anime.meanScore}\nMinutes Watched: ${userProfile.statistics.anime.minutesWatched}\nEpisodes Watched: ${userProfile.statistics.anime.episodesWatched}`, inline: true },
-                    { name: 'Manga Stats', value: `Count: ${userProfile.statistics.manga.count}\nChapters Read: ${userProfile.statistics.manga.chaptersRead}\nVolumes Read: ${userProfile.statistics.manga.volumesRead}\nMean Score: ${userProfile.statistics.manga.meanScore}`, inline: true }
+                    { name: 'Anime Stats', value: `Count: ${userProfile.statistics.anime.count}\nMean Score: ${userProfile.statistics.anime.meanScore}\nDays Watched: ${(userProfile.statistics.anime.minutesWatched / 1440).toFixed(2)}\nEpisodes Watched: ${userProfile.statistics.anime.episodesWatched}`, inline: true },
+                    { name: 'Manga Stats', value: `Count: ${userProfile.statistics.manga.count}\nMean Score : ${userProfile.statistics.manga.meanScore}\nChapters Read: ${userProfile.statistics.manga.chaptersRead}\nVolumes Read: ${userProfile.statistics.manga.volumesRead}`, inline: true }
                 );
 
             // Create the favorite anime button
@@ -182,7 +182,7 @@ module.exports = {
                         const animeEmbed = new EmbedBuilder()
                             .setTitle(selectedAnime.title.romaji || selectedAnime.title.english)
                             .setURL(`https://anilist.co/anime/${selectedAnime.id}`)
-                            .setDescription(`**Score**: ${selectedAnime.mediaListEntry ? selectedAnime.mediaListEntry.score : 'N/A'}`)
+                            .setDescription(`**Score**: ${selectedAnime.mediaListEntry ? selectedAnime.mediaListEntry.score : 'N/A'}`) //  TODO add the user score.
                             .setImage(selectedAnime.coverImage.large);
                     
                         await i.update({ embeds: [animeEmbed], components: [] });

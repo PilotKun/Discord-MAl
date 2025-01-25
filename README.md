@@ -26,6 +26,10 @@ The idea for this bot was given by my friend [@baku](https://github.com/maioriki
 - Add support for manga managing & manga watchlists.
 
 - Integrate with other anime databases (e.g., MyAnimeList).
+
+- Make a website for the bot.
+
+- Rename the commands & solve the issue where the cmds appear 2 times in Discord.
   
 ## References
 - [discord.js Documentation](https://discord.js.org/#/)

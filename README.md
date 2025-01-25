@@ -1,7 +1,7 @@
 # Discord-MAL
 One bot to help users see their MAL & Anilist profile, list, etc on Discord. 
 
-The idea for this bot was given by my friend [@baku](https://github.com/maiorikizu). 
+The idea for this bot was given by my friend [@baku](https://github.com/maiorikizu). And brought to life by [@Pilot_kun](https://github.com/Hackers244)
 
 ## List of features that are already done and the ones coming soon 
 **AniList User Command:** Fetches and displays the AniList user profile based on the provided username. ✅

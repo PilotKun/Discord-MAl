@@ -21,7 +21,9 @@ The idea for this bot was given by my friend [@baku](https://github.com/maioriki
 **Register Commands:** Registers all the application (/) commands to the Discord server. ✅
 
 ## Future Enhancements
-- Add support for managing manga watchlists.
+- Function to edit your Anilist anime list from Discord. 
+
+- Add support for manga managing & manga watchlists.
 
 - Integrate with other anime databases (e.g., MyAnimeList).
   

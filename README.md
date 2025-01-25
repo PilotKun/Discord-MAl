@@ -24,11 +24,7 @@ The idea for this bot was given by my friend [@baku](https://github.com/maioriki
 - Add support for managing manga watchlists.
 
 - Integrate with other anime databases (e.g., MyAnimeList).
-
-- Enable multilingual support.
-
-- Introduce premium features for advanced users.
-
+  
 ## References
 - [discord.js Documentation](https://discord.js.org/#/)
 - [AniList API Documentation](https://anilist.gitbook.io/anilist-apiv2-docs/)
